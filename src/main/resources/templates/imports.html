@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}"/>
+    <title>bets/stats</title>
+</head>
+<body>
+<header th:include="header::navbar">
+</header>
+
+<article>
+    <a th:href="'/import-bets'">bets</a>
+    <span th:text="'imported successfull'" th:if="${successBets}"></span>
+    <br/><br/>
+    <h2>Import data from CSV</h2>
+    <a th:href="'/import-csv'">csv</a>
+</article>
+</body>
+</html>

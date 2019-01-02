@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}"/>
+    <title>bets/stats</title>
+</head>
+<body>
+<header th:include="header::navbar">
+</header>
+
+<article>
+    <table>
+        <tr>
+            <th>date</th>
+            <th>type</th>
+            <th>stake</th>
+            <th>st/bet</th>
+            <th>won</th>
+            <th>cash</th>
+        </tr>
+
+        <tr th:each="bet : ${bets}">
+            <td th:text="${#strings.substring(bet.date,0,10)}"></td>
+            <td th:text="${bet.type}"></td>
+            <td th:text="${bet.stake}"></td>
+            <td th:text="${bet.stakepertype}"></td>
+            <td th:text="${bet.won}"></td>
+            <td th:text="${bet.cash}"></td>
+        </tr>
+    </table>
+
+</article>
+</body>
+</html>

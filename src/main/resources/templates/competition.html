@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}"/>
+    <title>competition</title>
+</head>
+<body>
+<header th:include="header::navbar">
+</header>
+<article>
+    <!--/*@thymesVar id="competition" type=""*/-->
+    <!--<p th:text="${competition} + ' table'"/>-->
+    <table>
+        <tr>
+            <th>Name</th><th>Points</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>GD</th>
+            <th>GF</th><th>GA</th>
+        </tr>
+        <tr th:each="c : ${competition}">
+            <td th:text="${c.team}"></td>
+            <td th:text="${c.pts}"></td>
+            <td th:text="${c.p}"></td>
+            <td th:text="${c.w}"></td>
+            <td th:text="${c.d}"></td>
+            <td th:text="${c.l}"></td>
+            <td th:text="${c.gd}"></td>
+            <td th:text="${c.f}"></td>
+            <td th:text="${c.a}"></td>
+        </tr>
+    </table>
+</article>
+</body>
+</html>

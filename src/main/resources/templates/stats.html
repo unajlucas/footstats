@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}"/>
+    <title>stats</title>
+</head>
+<body>
+<header th:include="header::navbar">
+</header>
+
+<article>
+    <table>
+        <tr>
+            <th>id_bet</th>
+            <th>h_team</th>
+            <th>hg</th>
+            <th></th>
+            <th>ag</th>
+            <th>a_team</th>
+            <th>course</th>
+            <th>type</th>
+            <th>scored</th>
+        </tr>
+
+        <tr th:each="stat : ${stats}">
+            <td th:text="${stat.id_bet}"></td>
+            <td th:text="${stat.h_team}"></td>
+            <td th:text="${stat.hg}"></td>
+            <td th:text="':'"></td>
+            <td th:text="${stat.ag}"></td>
+            <td th:text="${stat.a_team}"></td>
+            <td th:text="${stat.course}"></td>
+            <td th:text="${stat.type}"></td>
+            <td th:text="${stat.scored}"></td>
+        </tr>
+    </table>
+
+</article>
+</body>
+</html>

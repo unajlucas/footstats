@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}"/>
+    <title>edit player</title>
+</head>
+<body>
+<header th:include="header::navbar">
+</header>
+
+<article>
+    <form action="#" th:object="${player}" method="post">
+        <p> Id: <input type="text" th:field="${player.p_id}"/>
+            tId: <input type="text" th:field="${player.p_id}"/>
+            ntId: <input type="text" th:field="${player.p_id}"/></p>
+        <p> fname: <input type="text" th:field="${player.fname}"/>
+            lname: <input type="text" th:field="${player.lname}"/>
+            nationality: <input type="text" th:field="${player.nationality}"/></p>
+        <p> n1: <input type="text" th:field="${player.n1}"/>
+            n2: <input type="text" th:field="${player.n2}"/>
+            n3: <input type="text" th:field="${player.n3}"/>
+            n4: <input type="text" th:field="${player.n4}"/>
+            n5: <input type="text" th:field="${player.n5}"/></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+
+    <table th:include="teams::table">
+    </table>
+</article>
+</body>
+</html>

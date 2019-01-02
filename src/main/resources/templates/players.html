@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}"/>
+    <title>players</title>
+</head>
+<body>
+<header th:include="header::navbar">
+</header>
+
+<article>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>fname</th>
+            <th>lname</th>
+            <th>nationality</th>
+            <th>birth</th>
+            <th>bbc</th>
+            <th>n1</th>
+            <th>n2</th>
+            <th>n3</th>
+            <th>n4</th>
+            <th>n5</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="player : ${players}">
+            <td th:text="${player.p_id}"></td>
+            <td th:text="${player.fname}"></td>
+            <td th:text="${player.lname}"></td>
+            <td th:text="${player.nationality}"></td>
+            <td th:text="${player.birthdate}"></td>
+            <td th:text="${player.bbc}"></td>
+            <td th:text="${player.n1}"></td>
+            <td th:text="${player.n2}"></td>
+            <td th:text="${player.n3}"></td>
+            <td th:text="${player.n4}"></td>
+            <td th:text="${player.n5}"></td>
+            <td>
+                <a th:href="@{'/players/edit--' + ${player.p_id}}">edit</a>
+            </td>
+            <td th:text="del"></td>
+        </tr>
+    </table>
+    <a th:href="@{/players/prev}" th:text="'prev'"></a>
+    <a th:href="@{/players/next}" th:text="'next'"></a>
+</article>
+</body>
+</html>
