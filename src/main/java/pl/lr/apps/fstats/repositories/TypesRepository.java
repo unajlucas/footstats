@@ -2,11 +2,12 @@ package pl.lr.apps.fstats.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import pl.lr.apps.fstats.entities.TypesTab;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
-public interface TypesRepository extends CrudRepository<TypesTab, Integer> {
+
+public interface TypesRepository extends JpaRepository<TypesTab, Integer> {
 
     @Override
     List<TypesTab> findAll();

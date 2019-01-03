@@ -22,27 +22,27 @@ public class ImportsController {
     @Autowired
     private RequestResponseFactory requestResponseFactory;
 
-    @RequestMapping(value = "/view")
-    public ModelAndView getImportsView(){
-        logger.info("START: {}, getImportsView", CONTROLLER_NAME);
-
-        ImportsRequestResponse importsRequestResponse = requestResponseFactory.makeImportsRequestResponseGetView();
-
-        logger.info("END: {}, getImportsView", CONTROLLER_NAME);
-
-        return importsRequestResponse.getModelAndViewResponse();
-    }
-
-    @RequestMapping(value = "/csv/{competition}", method = RequestMethod.GET)
-    public ModelAndView importMatches(@PathVariable("competition") String competition) {
-        logger.info("START: {}, importMatches", CONTROLLER_NAME);
-        ImportsRequestResponse importsRequestResponse
-                = requestResponseFactory.makeImportsRequestResponseImportMatches(competition);
-
-        importsRequestResponse.processRequest();
-
-        logger.info("END: {}, importMatches", CONTROLLER_NAME);
-        return importsRequestResponse.getModelAndViewResponse();
-    }
+//    @RequestMapping(value = "/view")
+//    public ModelAndView getImportsView(){
+//        logger.info("START: {}, getImportsView", CONTROLLER_NAME);
+//
+//        ImportsRequestResponse importsRequestResponse = requestResponseFactory.makeImportsRequestResponseGetView();
+//
+//        logger.info("END: {}, getImportsView", CONTROLLER_NAME);
+//
+//        return importsRequestResponse.getModelAndViewResponse();
+//    }
+//
+//    @RequestMapping(value = "/csv/{competition}", method = RequestMethod.GET)
+//    public ModelAndView importMatches(@PathVariable("competition") String competition) {
+//        logger.info("START: {}, importMatches", CONTROLLER_NAME);
+//        ImportsRequestResponse importsRequestResponse
+//                = requestResponseFactory.makeImportsRequestResponseImportMatches(competition);
+//
+//        importsRequestResponse.processRequest();
+//
+//        logger.info("END: {}, importMatches", CONTROLLER_NAME);
+//        return importsRequestResponse.getModelAndViewResponse();
+//    }
 
 }

@@ -38,7 +38,7 @@ public class PeopleServiceImpl extends ViewAbstract implements PeopleService {
     @Override
     public ModelAndView getAllPlayers(int page, int size) {
         setView(Views.players.name());
-        Page<People> people = peopleViewRepository.findAll(new PageRequest(page, size));
+        Page<People> people = null; //= peopleViewRepository.findAll(new PageRequest(page, size));
         model.addObject("players", people);
         return model;
     }

@@ -6,145 +6,144 @@
     <title>teams home</title>
 </head>
 <body>
-<header th:include="header::navbar">
-</header>
-<article>
-    <a th:href="@{/teams(s_id=1617)}">1617</a>&nbsp;
-    <a th:href="@{/teams(s_id=1718)}">1718</a>&nbsp;
-    <a th:href="@{/teams(s_id=1819)}">1819</a>
-    <table th:fragment="table">
-        <tr>
-            <th></th>
-            <th>Premiership</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>Championship</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>League One</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>League Two</th>
-            <th></th>
-            <th></th>
-        </tr>
+    <div id="wrapper">
+        <header th:include="basic/header.html::navbar">
+        </header>
+        <header th:replace="basic/header.html::naviyear(par='teams')">
+        </header>
+        <table th:fragment="table">
+            <tr>
+                <th></th>
+                <th>Premiership</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Championship</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>League One</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>League Two</th>
+                <th></th>
+                <th></th>
+            </tr>
 
-        <tr th:each="data, row: ${teams}" th:if="${row.index} &lt; 12">
-            <td>
-                <div th:switch="${data.competition}">
-                    <span th:case="'Premiership'" th:if="${row.index} &lt; 10"
-                          th:text="${teams[row.index].t_id}"></span>
-                    <p th:case="*" th:text="''"></p>
-                </div>
-            </td>
-            <td>
-                <div th:switch="${data.competition}">
-                    <a th:href="'teams/' + ${#strings.replace(teams[row.index].name,' ','')}"><span
-                            th:case="'Premiership'" th:if="${row.index} &lt; 10"
-                            th:text="${teams[row.index].name}"></span></a>
-                    <p th:case="*" th:text="''"></p>
-                </div>
-            </td>
-            <td>
-                <div th:switch="${data.competition}">
-			    		<span th:with="dataIndex=(${row.index} + 10)" th:case="'Premiership'"
-                              th:if="${row.index} &lt; 10" th:text="${teams[dataIndex].t_id}"></span>
-                    <p th:case="*" th:text="''"></p>
-                </div>
-            </td>
-            <td>
-                <div th:switch="${data.competition}">
-                    <a th:with="dataIndex=(${row.index} + 10)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:case="'Premiership'"
-                            th:if="${row.index} &lt; 10" th:text="${teams[dataIndex].name}"></span></a>
-                    <p th:case="*" th:text="''"></p>
-                </div>
-            </td>
-
-
-            <td>
-                <div>
-                    <span th:with="dataIndex=(${row.index} + 20)" th:text="${teams[dataIndex].t_id}"></span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a th:with="dataIndex=(${row.index} + 20)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:text="${teams[dataIndex].name}"></span></a>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <span th:with="dataIndex=(${row.index} + 32)" th:text="${teams[dataIndex].t_id}"></span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a th:with="dataIndex=(${row.index} + 32)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:text="${teams[dataIndex].name}"></span></a>
-                </div>
-            </td>
+            <tr th:each="data, row: ${teamList}" th:if="${row.index} &lt; 12">
+                <td>
+                    <div th:switch="${data.competition}">
+                        <span th:case="'Premiership'" th:if="${row.index} &lt; 10"
+                              th:text="${teamList[row.index].t_id}"></span>
+                        <p th:case="*" th:text="''"></p>
+                    </div>
+                </td>
+                <td>
+                    <div th:switch="${data.competition}">
+                        <a th:href="'teams/' + ${#strings.replace(teamList[row.index].name,' ','')}"><span
+                                th:case="'Premiership'" th:if="${row.index} &lt; 10"
+                                th:text="${teamList[row.index].name}"></span></a>
+                        <p th:case="*" th:text="''"></p>
+                    </div>
+                </td>
+                <td>
+                    <div th:switch="${data.competition}">
+                            <span th:with="dataIndex=(${row.index} + 10)" th:case="'Premiership'"
+                                  th:if="${row.index} &lt; 10" th:text="${teamList[dataIndex].t_id}"></span>
+                        <p th:case="*" th:text="''"></p>
+                    </div>
+                </td>
+                <td>
+                    <div th:switch="${data.competition}">
+                        <a th:with="dataIndex=(${row.index} + 10)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:case="'Premiership'"
+                                th:if="${row.index} &lt; 10" th:text="${teamList[dataIndex].name}"></span></a>
+                        <p th:case="*" th:text="''"></p>
+                    </div>
+                </td>
 
 
-            <td>
-                <div>
-                    <span th:with="dataIndex=(${row.index} + 44)" th:text="${teams[dataIndex].t_id}"></span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a th:with="dataIndex=(${row.index} + 44)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:text="${teams[dataIndex].name}"></span></a>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <span th:with="dataIndex=(${row.index} + 56)" th:text="${teams[dataIndex].t_id}"></span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a th:with="dataIndex=(${row.index} + 56)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:text="${teams[dataIndex].name}"></span></a>
-                </div>
-            </td>
+                <td>
+                    <div>
+                        <span th:with="dataIndex=(${row.index} + 20)" th:text="${teamList[dataIndex].t_id}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:with="dataIndex=(${row.index} + 20)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:text="${teamList[dataIndex].name}"></span></a>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span th:with="dataIndex=(${row.index} + 32)" th:text="${teamList[dataIndex].t_id}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:with="dataIndex=(${row.index} + 32)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:text="${teamList[dataIndex].name}"></span></a>
+                    </div>
+                </td>
 
 
-            <td>
-                <div>
-                    <span th:with="dataIndex=(${row.index} + 68)" th:text="${teams[dataIndex].t_id}"></span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a th:with="dataIndex=(${row.index} + 68)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:text="${teams[dataIndex].name}"></span></a>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <span th:with="dataIndex=(${row.index} + 80)" th:text="${teams[dataIndex].t_id}"></span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <a th:with="dataIndex=(${row.index} + 80)"
-                       th:href="'teams/' + ${#strings.replace(teams[dataIndex].name,' ','')}"><span
-                            th:text="${teams[dataIndex].name}"></span></a>
-                </div>
-            </td>
-        </tr>
+                <td>
+                    <div>
+                        <span th:with="dataIndex=(${row.index} + 44)" th:text="${teamList[dataIndex].t_id}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:with="dataIndex=(${row.index} + 44)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:text="${teamList[dataIndex].name}"></span></a>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span th:with="dataIndex=(${row.index} + 56)" th:text="${teamList[dataIndex].t_id}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:with="dataIndex=(${row.index} + 56)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:text="${teamList[dataIndex].name}"></span></a>
+                    </div>
+                </td>
 
-    </table>
+
+                <td>
+                    <div>
+                        <span th:with="dataIndex=(${row.index} + 68)" th:text="${teamList[dataIndex].t_id}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:with="dataIndex=(${row.index} + 68)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:text="${teamList[dataIndex].name}"></span></a>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span th:with="dataIndex=(${row.index} + 80)" th:text="${teamList[dataIndex].t_id}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:with="dataIndex=(${row.index} + 80)"
+                           th:href="'teams/' + ${#strings.replace(teamList[dataIndex].name,' ','')}"><span
+                                th:text="${teamList[dataIndex].name}"></span></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </article>
 </body>
 </html>

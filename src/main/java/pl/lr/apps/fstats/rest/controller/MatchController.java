@@ -21,17 +21,17 @@ public class MatchController {
     @Autowired
     private RequestResponseFactory requestResponseFactory;
 
-    @RequestMapping(value = {"/matches"}, method = RequestMethod.GET)
-    public ModelAndView getAllMatchesBySeason(
-            @RequestParam(value = "s_id", required = false, defaultValue="${default.s_id}") int s_id) {
-        logger.info("START: {}, getAllMatchesBySeason ", CONTROLLER_NAME);
-
-        MatchRequestResponse matchRequestResponse = requestResponseFactory.makeMatchRequestResponse(s_id);
-
-        matchRequestResponse.processRequest();
-
-        logger.info("END: {}, getAllMatchesBySeason ", CONTROLLER_NAME);
-
-        return matchRequestResponse.getModelAndViewResponse();
-    }
+//    @RequestMapping(value = {"/matches"}, method = RequestMethod.GET)
+//    public ModelAndView getAllMatchesBySeason(
+//            @RequestParam(value = "s_id", required = false, defaultValue="${default.s_id}") int s_id) {
+//        logger.info("START: {}, getAllMatchesBySeason ", CONTROLLER_NAME);
+//
+//        MatchRequestResponse matchRequestResponse = requestResponseFactory.makeMatchRequestResponse(s_id);
+//
+//        matchRequestResponse.processRequest();
+//
+//        logger.info("END: {}, getAllMatchesBySeason ", CONTROLLER_NAME);
+//
+//        return matchRequestResponse.getModelAndViewResponse();
+//    }
 }

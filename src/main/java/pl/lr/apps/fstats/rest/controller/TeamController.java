@@ -24,10 +24,10 @@ public class TeamController {
 
     @RequestMapping(value = {"/teams"}, method = RequestMethod.GET)
     public ModelAndView getAllTeamsBySeason(
-            @RequestParam(value = "s_id", required = false, defaultValue="${default.s_id}") int s_id) {
+            @RequestParam(value = "season", required = false, defaultValue="${default.s_id}") Integer season) {
         logger.info("START: {}, getAllTeamsBySeason ", CONTROLLER_NAME);
 
-        TeamsRequestResponse teamsRequestResponse = requestResponseFactory.makeTeamsRequestResponse(s_id);
+        TeamsRequestResponse teamsRequestResponse = requestResponseFactory.makeTeamsRequestResponse(season);
 
         teamsRequestResponse.processRequest();
 
@@ -35,16 +35,16 @@ public class TeamController {
         return teamsRequestResponse.getModelAndViewResponse();
     }
 
-    @RequestMapping(value = {"/teams/{team}"}, method = RequestMethod.GET)
-    public ModelAndView getTeam(@PathVariable("team") String team,
-            @RequestParam(value = "s_id", required = false, defaultValue="${default.s_id}") int s_id) {
-        logger.info("START: {}, getTeam", CONTROLLER_NAME);
-
-        TeamRequestResponse teamRequestResponse = requestResponseFactory.makeTeamRequestResponse(team, s_id);
-
-        teamRequestResponse.processRequest();
-
-        logger.info("END: {}, getTeam", CONTROLLER_NAME);
-        return teamRequestResponse.getModelAndViewResponse();
-    }
+//    @RequestMapping(value = {"/teams/{team}"}, method = RequestMethod.GET)
+//    public ModelAndView getTeam(@PathVariable("team") String team,
+//            @RequestParam(value = "s_id", required = false, defaultValue="${default.s_id}") int s_id) {
+//        logger.info("START: {}, getTeam", CONTROLLER_NAME);
+//
+//        TeamRequestResponse teamRequestResponse = requestResponseFactory.makeTeamRequestResponse(team, s_id);
+//
+//        teamRequestResponse.processRequest();
+//
+//        logger.info("END: {}, getTeam", CONTROLLER_NAME);
+//        return teamRequestResponse.getModelAndViewResponse();
+//    }
 }

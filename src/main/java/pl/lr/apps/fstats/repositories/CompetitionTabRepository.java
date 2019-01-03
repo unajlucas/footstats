@@ -2,12 +2,12 @@ package pl.lr.apps.fstats.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import pl.lr.apps.fstats.entities.CompetitionTab;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface CompetitionTabRepository extends CrudRepository<CompetitionTab, Integer> {
+public interface CompetitionTabRepository extends JpaRepository<CompetitionTab, Integer> {
 
     @Override
     List<CompetitionTab> findAll();

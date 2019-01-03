@@ -19,14 +19,16 @@ public class TeamsRequestResponse extends ViewResponse implements RequestRespons
 
     public TeamsRequestResponse(int s_id){
         super(Views.teams.name());
-        setS_id(s_id);
+        setSid(s_id);
         logger.info("{} initialized", CLASS_NAME);
     }
 
     @Override
     public void processRequest() {
         logger.info("{} processRequest() started.", CLASS_NAME);
-        modelAndViewResponse.addObject("teams", teamService.getAllTeamsBySeason(s_id));
+        modelAndViewResponse.addObject("teamList", teamService.getAllTeamsBySeason(sid));
+        modelAndViewResponse.addObject("season", sid);
+        modelAndViewResponse.addObject("teams", "teams");
         logger.info("{} processRequest() finished.", CLASS_NAME);
     }
 }

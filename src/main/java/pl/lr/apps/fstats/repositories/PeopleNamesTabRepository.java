@@ -1,8 +1,8 @@
 package pl.lr.apps.fstats.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import pl.lr.apps.fstats.entities.PeopleNamesTab;
-import org.springframework.data.repository.CrudRepository;
 
-public interface PeopleNamesTabRepository extends CrudRepository<PeopleNamesTab, Integer> {
+public interface PeopleNamesTabRepository extends JpaRepository<PeopleNamesTab, Integer> {
 
 }

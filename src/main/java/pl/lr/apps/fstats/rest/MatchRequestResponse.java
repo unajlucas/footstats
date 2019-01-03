@@ -25,7 +25,7 @@ public class MatchRequestResponse extends ViewResponse implements RequestRespons
     @Override
     public void processRequest() {
         logger.info("{} processRequest() started.", CLASS_NAME);
-        modelAndViewResponse.addObject("matches", matchService.getAllMatchesBySeasonId(s_id));
+        modelAndViewResponse.addObject("matches", matchService.getAllMatchesBySeasonId(sid));
         logger.info("{} processRequest() finished.", CLASS_NAME);
     }
 }

@@ -1,5 +1,6 @@
 package pl.lr.apps.fstats.rest.controller;
 
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.lr.apps.fstats.rest.CompetitionRequestResponse;
 import pl.lr.apps.fstats.rest.CompetitionsRequestResponse;
 import pl.lr.apps.fstats.rest.RequestResponseFactory;
@@ -23,18 +24,20 @@ public class CompetitionController {
     private RequestResponseFactory requestResponseFactory;
 
     @RequestMapping(value = "/competitions")
-    public ModelAndView getAllCompetitions() {
-        logger.info("START: {}, getAllCompetitions ", CONTROLLER_NAME);
+    public ModelAndView getCompetitionForSeason(
+            @RequestParam(value = "season", required = false, defaultValue="${default.s_id}") Integer season){
 
-        CompetitionsRequestResponse competitionsRequestResponse = requestResponseFactory.makeCompetitionsRequestResponse();
+        logger.info("START: {}, getCompetitionForSeason ", CONTROLLER_NAME);
+
+        CompetitionsRequestResponse competitionsRequestResponse = requestResponseFactory.makeCompetitionsRequestResponse(season);
 
         competitionsRequestResponse.processRequest();
 
-        logger.info("END: {}, getAllCompetitions ", CONTROLLER_NAME);
+        logger.info("END: {}, getCompetitionForSeason ", CONTROLLER_NAME);
         return competitionsRequestResponse.getModelAndViewResponse();
     }
 
-    @RequestMapping("/competitions/{competition}/{season}")
+    @RequestMapping("/competitions/{competition}")
     public ModelAndView getCompetitionDetails(
             @PathVariable("competition") String competition,
             @RequestParam(value = "season", required = false, defaultValue="${default.s_id}") Integer sid) {

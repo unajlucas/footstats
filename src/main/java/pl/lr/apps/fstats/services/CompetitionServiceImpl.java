@@ -29,7 +29,10 @@ public class CompetitionServiceImpl extends ViewAbstract implements CompetitionS
 
     @Override
     public List<CompetitionSummaryV> getCompetitionTableDetails(String competition, Integer sid) {
+        logger.info("competition " + competition);
         Integer cid = competitionRepository.findCompetitionIdByName(competition);
+        logger.info("sid... " + sid);
+        logger.info("cid... " + cid);
         return competitionSummaryVRepository.findAllBySidAndCid(sid, cid);
     }
 

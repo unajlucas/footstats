@@ -1,7 +1,6 @@
 package pl.lr.apps.fstats.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -10,15 +9,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "competition_summary")
-@Getter
-@Setter
+@Data
 public class CompetitionSummaryV {
 
     @EmbeddedId
     private CompetitionSummaryVPK competitionSummaryVPK;
 
-    @Column(name = "team")
-    private String team;
+//    @Column(name = "team")
+//    private String team;
 
     @Column(name = "p")
     private Integer p;

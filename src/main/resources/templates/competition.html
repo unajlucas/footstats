@@ -6,18 +6,17 @@
     <title>competition</title>
 </head>
 <body>
-<header th:include="header::navbar">
-</header>
 <article>
-    <!--/*@thymesVar id="competition" type=""*/-->
-    <!--<p th:text="${competition} + ' table'"/>-->
+    <div id="wrapper">
+    <header th:insert="basic/header.html::navbar">
+    </header>
     <table>
         <tr>
             <th>Name</th><th>Points</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>GD</th>
             <th>GF</th><th>GA</th>
         </tr>
         <tr th:each="c : ${competition}">
-            <td th:text="${c.team}"></td>
+            <td th:text="${c.competitionSummaryVPK.team}"></td>
             <td th:text="${c.pts}"></td>
             <td th:text="${c.p}"></td>
             <td th:text="${c.w}"></td>
@@ -28,6 +27,7 @@
             <td th:text="${c.a}"></td>
         </tr>
     </table>
+    </div>
 </article>
 </body>
 </html>

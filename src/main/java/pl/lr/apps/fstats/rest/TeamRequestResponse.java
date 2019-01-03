@@ -20,7 +20,7 @@ public class TeamRequestResponse extends ViewResponse implements RequestResponse
 
     public TeamRequestResponse(String team, int s_id){
         super(Views.team.name());
-        setS_id(s_id);
+        setSid(s_id);
         this.teamName = team;
         logger.info("{} initialized", CLASS_NAME);
     }
@@ -28,7 +28,7 @@ public class TeamRequestResponse extends ViewResponse implements RequestResponse
     @Override
     public void processRequest() {
         logger.info("{} processRequest() started.", CLASS_NAME);
-        modelAndViewResponse.addObject("team", teamService.getTeam(teamName, s_id));
+        modelAndViewResponse.addObject("team", teamService.getTeam(teamName, sid));
         logger.info("{} processRequest() finished.", CLASS_NAME);
     }
 }

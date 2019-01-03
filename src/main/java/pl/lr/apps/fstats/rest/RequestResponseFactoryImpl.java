@@ -1,5 +1,7 @@
 package pl.lr.apps.fstats.rest;
 
+import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.ModelAndView;
 import pl.lr.apps.fstats.services.CompetitionService;
 import pl.lr.apps.fstats.services.ImportService;
 import pl.lr.apps.fstats.services.MatchService;
@@ -10,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RequestResponseFactoryImpl implements RequestResponseFactory {
 
-    @Autowired
-    private MatchService matchService;
+//    @Autowired
+//    private MatchService matchService;
 
     @Autowired
     private CompetitionService competitionService;
@@ -19,20 +21,15 @@ public class RequestResponseFactoryImpl implements RequestResponseFactory {
     @Autowired
     private TeamService teamService;
 
+//    @Autowired
+//    private ImportService importService;
+
     @Autowired
-    private ImportService importService;
+    private Environment environment;
 
     @Override
-    public MatchRequestResponse makeMatchRequestResponse(int s_id) {
-        MatchRequestResponse matchRequestResponse = new MatchRequestResponse();
-        matchRequestResponse.setMatchService(matchService);
-        matchRequestResponse.setS_id(s_id);
-        return matchRequestResponse;
-    }
-
-    @Override
-    public CompetitionsRequestResponse makeCompetitionsRequestResponse() {
-        CompetitionsRequestResponse competitionsRequestResponse = new CompetitionsRequestResponse();
+    public CompetitionsRequestResponse makeCompetitionsRequestResponse(Integer season) {
+        CompetitionsRequestResponse competitionsRequestResponse = new CompetitionsRequestResponse(season);
         competitionsRequestResponse.setCompetitionService(competitionService);
         return competitionsRequestResponse;
     }
@@ -45,8 +42,8 @@ public class RequestResponseFactoryImpl implements RequestResponseFactory {
     }
 
     @Override
-    public TeamsRequestResponse makeTeamsRequestResponse(int s_id) {
-        TeamsRequestResponse teamsRequestResponse = new TeamsRequestResponse(s_id);
+    public TeamsRequestResponse makeTeamsRequestResponse(Integer season) {
+        TeamsRequestResponse teamsRequestResponse = new TeamsRequestResponse(season);
         teamsRequestResponse.setTeamService(teamService);
         return teamsRequestResponse;
     }
@@ -58,15 +55,23 @@ public class RequestResponseFactoryImpl implements RequestResponseFactory {
         return teamRequestResponse;
     }
 
-    @Override
-    public ImportsRequestResponse makeImportsRequestResponseGetView() {
-        return new ImportsRequestResponse();
-    }
+//    @Override
+//    public MatchRequestResponse makeMatchRequestResponse(int s_id) {
+//        MatchRequestResponse matchRequestResponse = new MatchRequestResponse();
+//        matchRequestResponse.setMatchService(matchService);
+//        matchRequestResponse.setS_id(s_id);
+//        return matchRequestResponse;
+//    }
 
-    @Override
-    public ImportsRequestResponse makeImportsRequestResponseImportMatches(String competition) {
-        ImportsRequestResponse importsRequestResponse = new ImportsRequestResponse(competition);
-        importsRequestResponse.setImportService(importService);
-        return importsRequestResponse;
-    }
+//    @Override
+//    public ImportsRequestResponse makeImportsRequestResponseGetView() {
+//        return new ImportsRequestResponse();
+//    }
+//
+//    @Override
+//    public ImportsRequestResponse makeImportsRequestResponseImportMatches(String competition) {
+//        ImportsRequestResponse importsRequestResponse = new ImportsRequestResponse(competition);
+//        importsRequestResponse.setImportService(importService);
+//        return importsRequestResponse;
+//    }
 }

@@ -2,11 +2,12 @@ package pl.lr.apps.fstats.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import pl.lr.apps.fstats.entities.BetsTab;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-public interface BetsRepository extends CrudRepository<BetsTab, Integer> {
+public interface BetsRepository extends JpaRepository<BetsTab, Integer> {
 
     @Override
     List<BetsTab> findAll();

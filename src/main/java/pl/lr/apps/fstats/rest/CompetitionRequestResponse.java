@@ -23,14 +23,17 @@ public class CompetitionRequestResponse extends ViewResponse implements RequestR
 
     public CompetitionRequestResponse(String competition, Integer sid){
         super(Views.competition.name());
-        setS_id(sid);
+        setSid(sid);
         this.competition = competition;
     }
 
     @Override
     public void processRequest() {
         logger.info("{} processRequest() started.", CLASS_NAME);
-        List<CompetitionSummaryV> competitionSummaryVS = competitionService.getCompetitionTableDetails(competition, s_id);
+        List<CompetitionSummaryV> competitionSummaryVS = competitionService.getCompetitionTableDetails(competition, sid);
+        for (CompetitionSummaryV competitionSummaryV : competitionSummaryVS){
+            logger.info(competitionSummaryV.getCompetitionSummaryVPK().getTeam());
+        }
         modelAndViewResponse.addObject("competition", competitionSummaryVS);
         logger.info("{} processRequest() finished.", CLASS_NAME);
     }

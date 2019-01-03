@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 public abstract class ViewResponse {
 
     protected ModelAndView modelAndViewResponse;
-    protected int s_id;
+    protected int sid;
 
     protected ViewResponse(){
         modelAndViewResponse = new ModelAndView();
