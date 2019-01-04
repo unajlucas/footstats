@@ -17,12 +17,12 @@ public class MatchV {
     @Id
     private int m_id;
 
-    private String div;
+    //private String div;
 
     //@Column(name = "FDATE")
     //private Timestamp date;
 
-    private String date;
+    //private String date;
 
     @Column(name = "s_id")
     private int s_id;
@@ -106,11 +106,11 @@ public class MatchV {
 //        this.ag = ag;
 //    }
 
-    @Override
-    public String toString() {
-        return "MatchV [m_id=" + m_id + ", date=" + date + ", s_id=" + s_id + ", competition=" + competition
-                + ", home_team=" + home_team + ", away_team=" + away_team + ", hg=" + hg + ", ag=" + ag + "]";
-    }
+//    @Override
+//    public String toString() {
+//        return "MatchV [m_id=" + m_id + ", date=" + date + ", s_id=" + s_id + ", competition=" + competition
+//                + ", home_team=" + home_team + ", away_team=" + away_team + ", hg=" + hg + ", ag=" + ag + "]";
+//    }
 
 //    public void setDate(Date readDate) {
 //        this.date = Utils.formatDateToTimestamp(readDate);

@@ -10,4 +10,6 @@ public interface MatchService {
     List<MatchV> getAllMatchesBySeasonId(int s_id);
 
     MatchTab findMatchBySeasonIdAndHomeTeamIdAndAwayTeamId(int sId, int ht_id, int at_id);
+
+    List<MatchV> findAllMatchesByCompetitionNameAndSid(String competition, Integer sid);
 }

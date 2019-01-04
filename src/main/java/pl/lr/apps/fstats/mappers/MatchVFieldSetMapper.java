@@ -13,7 +13,7 @@ public class MatchVFieldSetMapper implements FieldSetMapper<MatchV> {
         if (fs == null) {
             return null;
         }
-        matchV.setDiv(fs.readString(0));
+        //matchV.setDiv(fs.readString(0));
         //matchV.setDate(fs.readString(1));
         //matchV.setDate((Timestamp) fs.readDate(1, "dd/MM/yy"));
         matchV.setHome_team(fs.readString(1));

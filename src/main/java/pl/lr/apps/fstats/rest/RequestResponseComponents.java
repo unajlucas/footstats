@@ -4,16 +4,16 @@ import lombok.Data;
 import org.springframework.web.servlet.ModelAndView;
 
 @Data
-public abstract class ViewResponse {
+public abstract class RequestResponseComponents {
 
     protected ModelAndView modelAndViewResponse;
     protected int sid;
 
-    protected ViewResponse(){
+    protected RequestResponseComponents(){
         modelAndViewResponse = new ModelAndView();
     }
 
-    protected ViewResponse(String view){
+    protected RequestResponseComponents(String view){
         modelAndViewResponse = new ModelAndView(view);
     }
 }

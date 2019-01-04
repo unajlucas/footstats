@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 @Getter
 @Setter
-public class MatchRequestResponse extends ViewResponse implements RequestResponse{
+public class MatchRequestResponse extends RequestResponseComponents implements Request {
 
     private static final Logger logger = LoggerFactory.getLogger(MatchRequestResponse.class);
 

@@ -1,7 +1,6 @@
 package pl.lr.apps.fstats.rest;
 
 import org.springframework.core.env.Environment;
-import org.springframework.web.servlet.ModelAndView;
 import pl.lr.apps.fstats.services.CompetitionService;
 import pl.lr.apps.fstats.services.ImportService;
 import pl.lr.apps.fstats.services.MatchService;
@@ -12,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RequestResponseFactoryImpl implements RequestResponseFactory {
 
-//    @Autowired
-//    private MatchService matchService;
+    @Autowired
+    private MatchService matchService;
 
     @Autowired
     private CompetitionService competitionService;
@@ -38,6 +37,7 @@ public class RequestResponseFactoryImpl implements RequestResponseFactory {
     public CompetitionRequestResponse makeCompetitionRequestResponse(String competition, Integer sid) {
         CompetitionRequestResponse competitionRequestResponse = new CompetitionRequestResponse(competition, sid);
         competitionRequestResponse.setCompetitionService(competitionService);
+        competitionRequestResponse.setMatchService(matchService);
         return competitionRequestResponse;
     }
 

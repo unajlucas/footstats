@@ -30,8 +30,8 @@ public class CompetitionController {
         logger.info("START: {}, getCompetitionForSeason ", CONTROLLER_NAME);
 
         CompetitionsRequestResponse competitionsRequestResponse = requestResponseFactory.makeCompetitionsRequestResponse(season);
-
         competitionsRequestResponse.processRequest();
+        competitionsRequestResponse.processResponse();
 
         logger.info("END: {}, getCompetitionForSeason ", CONTROLLER_NAME);
         return competitionsRequestResponse.getModelAndViewResponse();
@@ -45,8 +45,8 @@ public class CompetitionController {
 
         CompetitionRequestResponse competitionRequestResponse
                 = requestResponseFactory.makeCompetitionRequestResponse(competition, sid);
-
         competitionRequestResponse.processRequest();
+        competitionRequestResponse.processResponse();
 
         logger.info("END: {}, getCompetitionDetails ", CONTROLLER_NAME);
         return competitionRequestResponse.getModelAndViewResponse();

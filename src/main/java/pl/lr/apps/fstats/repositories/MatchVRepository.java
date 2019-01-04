@@ -12,4 +12,7 @@ public interface MatchVRepository extends JpaRepository<MatchV, Integer> {
     @Query("SELECT m FROM MatchV m WHERE m.s_id=:s_id")
     List<MatchV> findAllbySeasonId(@Param("s_id") Integer s_id);
 
+    @Query("SELECT m FROM MatchV m WHERE m.competition=:competition AND m.s_id=:sid")
+    List<MatchV> findAllbyCompetitionNameAndSeasonId(@Param("competition") String competition, @Param("sid") Integer sid);
+
 }

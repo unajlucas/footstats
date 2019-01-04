@@ -17,10 +17,10 @@ public class MatchServiceImpl implements MatchService {
     private static final Logger logger = LoggerFactory.getLogger(MatchServiceImpl.class);
 
     @Autowired
-    MatchVRepository matchRepository;
+    private MatchVRepository matchRepository;
 
     @Autowired
-    MatchTabRepository matchTabRepository;
+    private MatchTabRepository matchTabRepository;
 
     @Override
     public List<MatchV> getAllMatchesBySeasonId(int s_id) {
@@ -31,6 +31,11 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public MatchTab findMatchBySeasonIdAndHomeTeamIdAndAwayTeamId(int sId, int ht_id, int at_id) {
         return matchTabRepository.findMatchBySeasonIdAndHomeTeamIdAndAwayTeamId(sId, ht_id, at_id);
+    }
+
+    @Override
+    public List<MatchV> findAllMatchesByCompetitionNameAndSid(String competition, Integer sid) {
+        return matchRepository.findAllbyCompetitionNameAndSeasonId(competition, sid);
     }
 
 }

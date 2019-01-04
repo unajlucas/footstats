@@ -12,41 +12,47 @@
         </header>
         <header th:replace="basic/header.html::naviyear(par='/competitions')">
         </header>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>name</th>
-                <th>details</th>
-                <th>fixture</th>
-                <th></th>
-                <th>csv</th>
-                <th>edit</th>
-            </tr>
-            <tr th:each="competition : ${competitionList}">
-                <td th:text="${competition.c_id}"></td>
-                <td th:text="${competition.name}"></td>
-                <td>
-                    <a th:href="'/competitions/' + ${#strings.replace(competition.name,' ','')} + '?season=' + ${season}" th:text="details"></a>
-                </td>
-                <td th:text="fixture"></td>
-                <td></td>
-                <td>
-                    <a th:href="'/imports/csv/' + ${#strings.replace(competition.name,' ','')}" th:text="csv"></a>
-                </td>
-                <td th:text="edit"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <a th:href="'/imports/csv/all'" th:text="all"></a>
-                </td>
-                <td></td>
-            </tr>
-        </table>
+        <div id="contentliquid">
+            <div id="content">
+                <table id="hor-minimalist-b">
+                    <tr>
+                        <th>ID</th>
+                        <th>name</th>
+                        <th>details</th>
+                        <th>fixture</th>
+                        <th></th>
+                        <th>csv</th>
+                        <th>edit</th>
+                    </tr>
+                    <tr th:each="competition : ${competitionList}">
+                        <td th:text="${competition.cid}"></td>
+                        <td th:text="${competition.name}"></td>
+                        <td>
+                            <a th:href="'/competitions/' + ${#strings.replace(competition.name,' ','')} + '?season='
+                                + ${season}" th:text="details"></a>
+                        </td>
+                        <td th:text="fixture"></td>
+                        <td></td>
+                        <td>
+                            <a th:href="'/imports/csv/' + ${#strings.replace(competition.name,' ','')}" th:text="csv"></a>
+                        </td>
+                        <td th:text="edit"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a th:href="'/imports/csv/all'" th:text="all"></a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                    </div>
+        </div>
+        <div id="leftcolumn"></div>
     </div>
 </article>
 </body>

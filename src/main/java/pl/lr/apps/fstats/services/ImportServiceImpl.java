@@ -94,7 +94,7 @@ public class ImportServiceImpl extends ViewAbstract implements ImportService {
         MatchTab matchTabEntry;
         try {
             while ((matchVCsvEntry = reader.read()) != null) {
-                logger.info(matchVCsvEntry.getDiv());
+                //logger.info(matchVCsvEntry.getDiv());
                 if (sId == 0) {
                     //sId = setSeasonId(matchVCsvEntry.getDate());
                 }
@@ -127,9 +127,9 @@ public class ImportServiceImpl extends ViewAbstract implements ImportService {
     }
 
     private MatchTab updateMatchEntry(MatchV matchVCsvEntry, MatchTab matchTabEntry) {
-        if (!matchVCsvEntry.getDate().equals(matchTabEntry.getDate())) {
+        //if (!matchVCsvEntry.getDate().equals(matchTabEntry.getDate())) {
             //matchTabEntry.setDate(matchVCsvEntry.getDate());
-        }
+        //}
         if (!(matchVCsvEntry.getHg() == matchTabEntry.getHg())) {
             matchTabEntry.setHg(matchVCsvEntry.getHg());
         }

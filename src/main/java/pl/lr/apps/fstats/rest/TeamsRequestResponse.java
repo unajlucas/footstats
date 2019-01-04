@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 @Getter
 @Setter
-public class TeamsRequestResponse extends ViewResponse implements RequestResponse {
+public class TeamsRequestResponse extends RequestResponseComponents implements Request {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamsRequestResponse.class);
 
