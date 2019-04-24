@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 @Service("peopleService")
-public class PeopleServiceImpl extends ViewAbstract implements PeopleService {
+public class PeopleServiceImpl implements PeopleService {
 
     private static final Logger logger = LoggerFactory.getLogger(PeopleServiceImpl.class);
 
@@ -35,34 +35,34 @@ public class PeopleServiceImpl extends ViewAbstract implements PeopleService {
 		return model;
 	}*/
 
-    @Override
-    public ModelAndView getAllPlayers(int page, int size) {
-        setView(Views.players.name());
-        Page<People> people = null; //= peopleViewRepository.findAll(new PageRequest(page, size));
-        model.addObject("players", people);
-        return model;
-    }
-
-    @Override
-    public ModelAndView editPlayer(Integer pId) {
-        setView(Views.editplayer.name());
-        //People player = peopleViewRepository.findOne(pId);
-        model.addObject("teams", teamVRepository.findBySeasonId(1718));
-        //model.addObject("player", player);
-        return model;
-    }
-
-    @Override
-    public ModelAndView getAllManagers() {
-        setView(Views.managers.name());
-        model.addObject("managers", peopleRepository.getAllPeopleByRole(Role.manager.name()));
-        return model;
-    }
-
-    @Override
-    public ModelAndView getAllReferee() {
-        setView(Views.referee.name());
-        model.addObject("referee", peopleRepository.getAllPeopleByRole(Role.referee.name()));
-        return model;
-    }
+//    @Override
+//    public ModelAndView getAllPlayers(int page, int size) {
+//        setView(Views.players.name());
+//        Page<People> people = null; //= peopleViewRepository.findAll(new PageRequest(page, size));
+//        model.addObject("players", people);
+//        return model;
+//    }
+//
+//    @Override
+//    public ModelAndView editPlayer(Integer pId) {
+//        setView(Views.editplayer.name());
+//        //People player = peopleViewRepository.findOne(pId);
+//        model.addObject("teams", teamVRepository.findBySeasonId(1718));
+//        //model.addObject("player", player);
+//        return model;
+//    }
+//
+//    @Override
+//    public ModelAndView getAllManagers() {
+//        setView(Views.managers.name());
+//        model.addObject("managers", peopleRepository.getAllPeopleByRole(Role.manager.name()));
+//        return model;
+//    }
+//
+//    @Override
+//    public ModelAndView getAllReferee() {
+//        setView(Views.referee.name());
+//        model.addObject("referee", peopleRepository.getAllPeopleByRole(Role.referee.name()));
+//        return model;
+//    }
 }

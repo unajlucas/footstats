@@ -1,39 +1,33 @@
 package pl.lr.apps.fstats.rest.controller;
 
-import org.springframework.web.bind.annotation.RequestMethod;
-import pl.lr.apps.fstats.rest.CompetitionRequestResponse;
-import pl.lr.apps.fstats.rest.CompetitionsRequestResponse;
-import pl.lr.apps.fstats.rest.RequestResponseFactory;
+import org.springframework.web.bind.annotation.PathVariable;
+import pl.lr.apps.fstats.rest.models.Competition;
+import pl.lr.apps.fstats.rest.models.Competitions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CompetitionController {
+public class CompetitionController extends Main {
 
     private static final Logger logger = LoggerFactory.getLogger(CompetitionController.class);
 
     private static final String CONTROLLER_NAME = "{ CompetitionController }";
 
-    @Autowired
-    private RequestResponseFactory requestResponseFactory;
-
     @RequestMapping(value = "/competitions")
-    public ModelAndView getCompetitionForSeason(
+    public ModelAndView getCompetitionList(
             @RequestParam(value = "season", required = false, defaultValue="${default.s_id}") Integer season){
 
-        logger.info("START: {}, getCompetitionForSeason ", CONTROLLER_NAME);
+        logger.info("START: {}, getCompetitionList ", CONTROLLER_NAME);
 
-        CompetitionsRequestResponse competitionsRequestResponse = requestResponseFactory.makeCompetitionsRequestResponse(season);
+        Competitions competitionsRequestResponse = restRequestResponseFactory.makeCompetitionsRequestResponse(season);
         competitionsRequestResponse.processRequest();
         competitionsRequestResponse.processResponse();
 
-        logger.info("END: {}, getCompetitionForSeason ", CONTROLLER_NAME);
+        logger.info("END: {}, getCompetitionList ", CONTROLLER_NAME);
         return competitionsRequestResponse.getModelAndViewResponse();
     }
 
@@ -43,8 +37,9 @@ public class CompetitionController {
             @RequestParam(value = "season", required = false, defaultValue="${default.s_id}") Integer sid) {
         logger.info("START: {}, getCompetitionDetails ", CONTROLLER_NAME);
 
-        CompetitionRequestResponse competitionRequestResponse
-                = requestResponseFactory.makeCompetitionRequestResponse(competition, sid);
+        Competition competitionRequestResponse
+                = restRequestResponseFactory.makeCompetitionRequestResponse(competition, sid);
+
         competitionRequestResponse.processRequest();
         competitionRequestResponse.processResponse();
 

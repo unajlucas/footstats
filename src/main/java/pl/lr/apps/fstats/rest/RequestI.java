@@ -1,5 +1,5 @@
 package pl.lr.apps.fstats.rest;
 
-public interface Request {
+public interface RequestI {
     void processRequest();
 }

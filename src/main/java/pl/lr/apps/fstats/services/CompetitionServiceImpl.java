@@ -6,21 +6,24 @@ import pl.lr.apps.fstats.repositories.CompetitionSummaryVRepository;
 import pl.lr.apps.fstats.repositories.CompetitionTabRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service("competitionService")
-public class CompetitionServiceImpl extends ViewAbstract implements CompetitionService {
+public class CompetitionServiceImpl implements CompetitionService {
 
     private static final Logger logger = LoggerFactory.getLogger(CompetitionServiceImpl.class);
 
-    @Autowired
-    private CompetitionTabRepository competitionRepository;
+    private final CompetitionTabRepository competitionRepository;
 
-    @Autowired
-    private CompetitionSummaryVRepository competitionSummaryVRepository;
+    private final CompetitionSummaryVRepository competitionSummaryVRepository;
+
+    public CompetitionServiceImpl(CompetitionTabRepository competitionTabRepository, CompetitionSummaryVRepository competitionSummaryVRepository) {
+        this.competitionRepository = competitionTabRepository;
+        this.competitionSummaryVRepository = competitionSummaryVRepository;
+    }
 
     @Override
     public List<CompetitionTab> getAllCompetitions() {

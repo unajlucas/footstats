@@ -1,6 +1,7 @@
 package pl.lr.apps.fstats.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pl.lr.apps.fstats.entities.CompetitionSummaryV;
 import pl.lr.apps.fstats.entities.CompetitionSummaryVPK;
 import org.springframework.data.jpa.repository.Query;

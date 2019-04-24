@@ -1,8 +1,10 @@
-package pl.lr.apps.fstats.rest;
+package pl.lr.apps.fstats.rest.models;
 
 import pl.lr.apps.fstats.entities.CompetitionTab;
 import pl.lr.apps.fstats.enums.Views;
 import pl.lr.apps.fstats.model.CompetitionsVM;
+import pl.lr.apps.fstats.rest.RequestI;
+import pl.lr.apps.fstats.rest.ResponseI;
 import pl.lr.apps.fstats.services.CompetitionService;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,18 +16,18 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CompetitionsRequestResponse extends RequestResponseComponents implements Request, Response {
+public class Competitions extends BasicComponents implements RequestI, ResponseI {
 
-    private static final Logger logger = LoggerFactory.getLogger(CompetitionsRequestResponse.class);
+    private static final Logger logger = LoggerFactory.getLogger(Competitions.class);
 
-    private static final String CLASS_NAME = " [CompetitionsRequestResponse] ";
+    private static final String CLASS_NAME = " [Competitions] ";
 
-    private CompetitionService competitionService;
+    private final CompetitionService competitionService;
     private List<CompetitionsVM> competitionsVMList;
 
-    public CompetitionsRequestResponse(Integer season){
-        super(Views.competitions.name());
-        this.sid = season;
+    public Competitions(CompetitionService competitionService, Integer season){
+        super(Views.competitions.name(), season);
+        this.competitionService = competitionService;
         this.competitionsVMList = new ArrayList<>();
         logger.info("{} initialized", CLASS_NAME);
     }

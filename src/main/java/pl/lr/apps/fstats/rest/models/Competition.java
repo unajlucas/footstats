@@ -1,9 +1,11 @@
-package pl.lr.apps.fstats.rest;
+package pl.lr.apps.fstats.rest.models;
 
 import pl.lr.apps.fstats.entities.CompetitionSummaryV;
 import pl.lr.apps.fstats.entities.MatchV;
 import pl.lr.apps.fstats.enums.Views;
 import pl.lr.apps.fstats.model.CompetitionVM;
+import pl.lr.apps.fstats.rest.RequestI;
+import pl.lr.apps.fstats.rest.ResponseI;
 import pl.lr.apps.fstats.services.CompetitionService;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,20 +23,21 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CompetitionRequestResponse extends RequestResponseComponents implements Request, Response {
+public class Competition extends BasicComponents implements RequestI, ResponseI {
 
-    private static final Logger logger = LoggerFactory.getLogger(CompetitionRequestResponse.class);
+    private static final Logger logger = LoggerFactory.getLogger(Competition.class);
 
-    private static final String CLASS_NAME = " [CompetitionRequestResponse] ";
+    private static final String CLASS_NAME = " [Competition] ";
 
     private CompetitionService competitionService;
     private MatchService matchService;
     private String competition;
     private List<CompetitionVM> competitionVMList;
 
-    public CompetitionRequestResponse(String competition, Integer sid){
-        super(Views.competition.name());
-        setSid(sid);
+    public Competition(CompetitionService competitionService, MatchService matchService, String competition, Integer sid){
+        super(Views.competition.name(), sid);
+        this.competitionService = competitionService;
+        this.matchService = matchService;
         this.competition = competition;
         this.competitionVMList = new ArrayList<>();
     }

@@ -22,7 +22,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 @Service("importService")
-public class ImportServiceImpl extends ViewAbstract implements ImportService {
+public class ImportServiceImpl implements ImportService {
 
     private static final Logger logger = LoggerFactory.getLogger(ImportServiceImpl.class);
     //private boolean success;

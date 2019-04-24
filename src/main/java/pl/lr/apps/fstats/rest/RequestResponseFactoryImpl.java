@@ -1,77 +1,45 @@
 package pl.lr.apps.fstats.rest;
 
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.lr.apps.fstats.rest.models.Competition;
+import pl.lr.apps.fstats.rest.models.Competitions;
+import org.springframework.stereotype.Service;
+import pl.lr.apps.fstats.rest.models.Team;
+import pl.lr.apps.fstats.rest.models.Teams;
 import pl.lr.apps.fstats.services.CompetitionService;
-import pl.lr.apps.fstats.services.ImportService;
 import pl.lr.apps.fstats.services.MatchService;
 import pl.lr.apps.fstats.services.TeamService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
-public class RequestResponseFactoryImpl implements RequestResponseFactory {
+public class RequestResponseFactoryImpl implements RequestResponseFactoryI {
 
     @Autowired
-    private MatchService matchService;
+    private BeanFactory beanFactory;
 
-    @Autowired
-    private CompetitionService competitionService;
-
-    @Autowired
-    private TeamService teamService;
-
-//    @Autowired
-//    private ImportService importService;
-
-    @Autowired
-    private Environment environment;
+    private static final String competitionServiceName = "competitionService";
+    private static final String matchServiceName = "matchService";
+    private static final String teamServiceName = "teamService";
 
     @Override
-    public CompetitionsRequestResponse makeCompetitionsRequestResponse(Integer season) {
-        CompetitionsRequestResponse competitionsRequestResponse = new CompetitionsRequestResponse(season);
-        competitionsRequestResponse.setCompetitionService(competitionService);
-        return competitionsRequestResponse;
+    public Competitions makeCompetitionsRequestResponse(Integer season) {
+        return new Competitions((CompetitionService)beanFactory.getBean(competitionServiceName), season);
     }
 
     @Override
-    public CompetitionRequestResponse makeCompetitionRequestResponse(String competition, Integer sid) {
-        CompetitionRequestResponse competitionRequestResponse = new CompetitionRequestResponse(competition, sid);
-        competitionRequestResponse.setCompetitionService(competitionService);
-        competitionRequestResponse.setMatchService(matchService);
-        return competitionRequestResponse;
+    public Competition makeCompetitionRequestResponse(String competition, Integer sid) {
+        return new Competition(
+                (CompetitionService)beanFactory.getBean(competitionServiceName),
+                (MatchService)beanFactory.getBean(matchServiceName), competition, sid);
     }
 
     @Override
-    public TeamsRequestResponse makeTeamsRequestResponse(Integer season) {
-        TeamsRequestResponse teamsRequestResponse = new TeamsRequestResponse(season);
-        teamsRequestResponse.setTeamService(teamService);
-        return teamsRequestResponse;
+    public Teams makeTeamsRequestResponse(Integer season) {
+        return new Teams((TeamService)beanFactory.getBean(teamServiceName), season);
     }
 
     @Override
-    public TeamRequestResponse makeTeamRequestResponse(String team, int s_id) {
-        TeamRequestResponse teamRequestResponse = new TeamRequestResponse(team, s_id);
-        teamRequestResponse.setTeamService(teamService);
-        return teamRequestResponse;
+    public Team makeTeamRequestResponse(String team, int s_id) {
+        return new Team((TeamService)beanFactory.getBean(teamServiceName), team, s_id);
     }
-
-//    @Override
-//    public MatchRequestResponse makeMatchRequestResponse(int s_id) {
-//        MatchRequestResponse matchRequestResponse = new MatchRequestResponse();
-//        matchRequestResponse.setMatchService(matchService);
-//        matchRequestResponse.setS_id(s_id);
-//        return matchRequestResponse;
-//    }
-
-//    @Override
-//    public ImportsRequestResponse makeImportsRequestResponseGetView() {
-//        return new ImportsRequestResponse();
-//    }
-//
-//    @Override
-//    public ImportsRequestResponse makeImportsRequestResponseImportMatches(String competition) {
-//        ImportsRequestResponse importsRequestResponse = new ImportsRequestResponse(competition);
-//        importsRequestResponse.setImportService(importService);
-//        return importsRequestResponse;
-//    }
 }

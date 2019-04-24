@@ -6,7 +6,6 @@ import pl.lr.apps.fstats.repositories.MatchTabRepository;
 import pl.lr.apps.fstats.repositories.MatchVRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +15,13 @@ public class MatchServiceImpl implements MatchService {
 
     private static final Logger logger = LoggerFactory.getLogger(MatchServiceImpl.class);
 
-    @Autowired
-    private MatchVRepository matchRepository;
+    private final MatchVRepository matchRepository;
+    private final MatchTabRepository matchTabRepository;
 
-    @Autowired
-    private MatchTabRepository matchTabRepository;
+    public MatchServiceImpl(MatchVRepository matchVRepository, MatchTabRepository matchTabRepository){
+        this.matchRepository = matchVRepository;
+        this.matchTabRepository = matchTabRepository;
+    }
 
     @Override
     public List<MatchV> getAllMatchesBySeasonId(int s_id) {

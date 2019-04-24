@@ -5,7 +5,6 @@ import pl.lr.apps.fstats.repositories.TeamNamesTabRepository;
 import pl.lr.apps.fstats.repositories.TeamVRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +14,13 @@ public class TeamServiceImpl implements TeamService {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamServiceImpl.class);
 
-    @Autowired
-    private TeamVRepository teamVRepository;
+    private final TeamVRepository teamVRepository;
+    private final TeamNamesTabRepository teamNamesTabRepository;
 
-    @Autowired
-    private TeamNamesTabRepository teamNamesTabRepository;
+    public TeamServiceImpl(TeamVRepository teamVRepository, TeamNamesTabRepository teamNamesTabRepository){
+        this.teamVRepository = teamVRepository;
+        this.teamNamesTabRepository = teamNamesTabRepository;
+    }
 
     @Override
     public List<TeamV> getAllTeamsBySeason(int s_id) {
