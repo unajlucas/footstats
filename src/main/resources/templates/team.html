@@ -6,9 +6,10 @@
     <title>team home</title>
 </head>
 <body>
-<header th:include="header::navbar">
+<header th:include="basic/header.html::navbar">
 </header>
 <article>
+    <h1 th:text="${tname}"></h1>
 </article>
 </body>
 </html>

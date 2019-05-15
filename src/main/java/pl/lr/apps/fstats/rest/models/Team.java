@@ -29,7 +29,7 @@ public class Team extends BasicComponents implements RequestI {
     @Override
     public void processRequest() {
         logger.info("{} processRequest() started.", CLASS_NAME);
-        modelAndViewResponse.addObject("team", teamService.getTeam(teamName, sid));
+        modelAndViewResponse.addObject("tname", teamService.getTeam(teamName, sid).getName());
         logger.info("{} processRequest() finished.", CLASS_NAME);
     }
 }

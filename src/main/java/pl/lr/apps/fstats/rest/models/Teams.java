@@ -29,7 +29,6 @@ public class Teams extends BasicComponents implements RequestI {
         logger.info("{} processRequest() started.", CLASS_NAME);
         modelAndViewResponse.addObject("teamList", teamService.getAllTeamsBySeason(sid));
         modelAndViewResponse.addObject("season", sid);
-        modelAndViewResponse.addObject("teams", "teams");
         logger.info("{} processRequest() finished.", CLASS_NAME);
     }
 }
