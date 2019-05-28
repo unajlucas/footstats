@@ -25,10 +25,6 @@ import org.springframework.stereotype.Service;
 public class ImportServiceImpl implements ImportService {
 
     private static final Logger logger = LoggerFactory.getLogger(ImportServiceImpl.class);
-    //private boolean success;
-
-//    @Autowired
-//    StakeService stakeService;
 
     @Autowired
     private CompetitionTabRepository competitionTabRepository;
@@ -45,20 +41,11 @@ public class ImportServiceImpl implements ImportService {
     @Autowired
     private TeamService teamService;
 
-//    @Override
-//    public ModelAndView importBets() {
-//
-//        setView("redirect:/imports/view");
-//
-//        success = stakeService.importBets("bets.file");
-//        return model;
-//    }
-
     @Override
     public void importMatches(String competition) {
-        //setView("redirect:/competitions");
         String propertySourceValue = getSourceValue(competition);
-        int c_id = 0;//= competitionTabRepository
+        int c_id = competitionTabRepository.findCompetitionIdByName(competition);
+        logger.info("competition id {} found ", c_id);
         if ("all".equals(competition)) {
             String[] sources = propertySourceValue.split(",");
             for (String source : sources) {
@@ -98,16 +85,18 @@ public class ImportServiceImpl implements ImportService {
                 if (sId == 0) {
                     //sId = setSeasonId(matchVCsvEntry.getDate());
                 }
+                logger.info("home_team {}", matchVCsvEntry.getHome_team());
                 ht_id = teamService.findTeamIdByName(matchVCsvEntry.getHome_team());
+                logger.info("away team {},", matchVCsvEntry.getAway_team());
                 at_id = teamService.findTeamIdByName(matchVCsvEntry.getAway_team());
 
                 matchTabEntry = matchService.findMatchBySeasonIdAndHomeTeamIdAndAwayTeamId(sId, ht_id, at_id);
                 if (matchTabEntry == null) {
-                    logger.info("match not founded.. ");
+                    logger.info("match not found, adding {}, {}, {}", sId, ht_id, at_id);
                     addMatch(sId, ht_id, at_id, matchTabEntry, matchVCsvEntry);
                     //matchService.getMatchTabRepository().save(entity)
                 } else {
-                    logger.info("match founded ");
+                    logger.info("match found, update..");
                     if (matchTabEntry.getFt() != 1) {
                         matchTabEntry = updateMatchEntry(matchVCsvEntry, matchTabEntry);
                         updateMatch(matchTabEntry);
@@ -184,35 +173,8 @@ public class ImportServiceImpl implements ImportService {
 
     private DelimitedLineTokenizer setDelimitedLineTokenizer(){
         DelimitedLineTokenizer delimitedLineTokenizer = new DelimitedLineTokenizer();
-        delimitedLineTokenizer.setNames(new String[] {"Div", "HomeTeam"});
-        delimitedLineTokenizer.setIncludedFields(0,2);
+        delimitedLineTokenizer.setNames(new String[] {"HomeTeam","AwayTeam","FTHG","FTAG"});
+        delimitedLineTokenizer.setIncludedFields(2,3,4,5);
         return delimitedLineTokenizer;
     }
-
-
-//    private void processTest(FlatFileItemReader<TestCSV> reader){
-//        try {
-//            TestCSV testCSV = reader.read();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    private FlatFileItemReader<TestCSV> setTestItemReader(Resource resource) {
-//        FlatFileItemReader<TestCSV> itemReader = new FlatFileItemReader<>();
-//        itemReader.setResource(resource);
-//        itemReader.setLineMapper(setTestLineMapper());
-//        itemReader.setLinesToSkip(1);
-//        return itemReader;
-//    }
-
-//    private DefaultLineMapper<TestCSV> setTestLineMapper() {
-//        DefaultLineMapper<TestCSV> lineMapper = new DefaultLineMapper<>();
-//        lineMapper.setLineTokenizer(setDelimitedLineTokenizer());
-//        //lineMapper.setFieldSetMapper(new MatchVFieldSetMapper());
-//        BeanWrapperFieldSetMapper<TestCSV> beanWrapperFieldSetMapper = new BeanWrapperFieldSetMapper<>();
-//        beanWrapperFieldSetMapper.setTargetType(TestCSV.class);
-//        lineMapper.setFieldSetMapper(beanWrapperFieldSetMapper);
-//        return lineMapper;
-//    }
 }

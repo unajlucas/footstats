@@ -17,9 +17,9 @@ public class MatchVFieldSetMapper implements FieldSetMapper<MatchV> {
         //matchV.setDate(fs.readString(1));
         //matchV.setDate((Timestamp) fs.readDate(1, "dd/MM/yy"));
         matchV.setHome_team(fs.readString(1));
-        //matchV.setAway_team(fs.readString(3));
-        //matchV.setHg(fs.readInt(4));
-        //matchV.setAg(fs.readInt(5));
+        matchV.setAway_team(fs.readString(3));
+        matchV.setHg(fs.readInt(4));
+        matchV.setAg(fs.readInt(5));
         return matchV;
     }
 }

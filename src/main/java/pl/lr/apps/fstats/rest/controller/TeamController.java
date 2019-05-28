@@ -13,6 +13,7 @@ import pl.lr.apps.fstats.rest.models.Teams;
 
 @Controller
 public class TeamController extends Main {
+
     private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
 
     private static final String CONTROLLER_NAME = "{ TeamController }";
